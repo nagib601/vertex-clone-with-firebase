@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { db } from "../../firebase/Frebase.config";
+import { db } from "../../firebase/Firebase.config";
 import { collection, addDoc } from "firebase/firestore";
 
 const AddCourse = () => {
