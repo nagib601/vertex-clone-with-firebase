@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
-import useAdmin from '../hooks/UseAdmin';
+import useAdmin from '../hooks/Useadmin';
 import { FaSignOutAlt } from "react-icons/fa"; // আইকন ইমপোর্ট করা হয়েছে
 
 const Header = () => {
