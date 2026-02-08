@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 import { useForm } from "react-hook-form"; 
 import toast from "react-hot-toast";
 // ফায়ারবেস কনফিগের পাথ ঠিক করা হয়েছে
-import { db } from "../firebase/firebase.config"; 
+import { db } from "../firebase/Firebase.config"; 
 import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {

@@ -1,7 +1,7 @@
 // src/providers/AuthProvider.jsx
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import app from "../firebase/Firebase.config.js";
+import app from "../firebase/Firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);

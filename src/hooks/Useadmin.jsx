@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import { db } from "../firebase/firebase.config"; // পাথ ঠিক আছে কিনা দেখে নেবেন
+import { db } from "../firebase/Firebase.config"; // পাথ ঠিক আছে কিনা দেখে নেবেন
 import { doc, getDoc } from "firebase/firestore";
 
 const UseAdmin = () => {

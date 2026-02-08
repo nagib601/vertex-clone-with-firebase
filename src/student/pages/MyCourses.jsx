@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "../../firebase/firebase.config";
+import { db } from "../firebase/Firebase.config";
 import { collection, getDocs } from "firebase/firestore";
 
 const MyCourses = () => {
