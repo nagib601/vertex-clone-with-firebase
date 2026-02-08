@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import useAdmin from '../hooks/Useadmin';
-import { FaSignOutAlt } from "react-icons/fa"; // আইকন ইমপোর্ট করা হয়েছে
+import { FaSignOutAlt } from "react-icons/fa"; // আইকন ইমপোর্ট করা হয়েছে
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -17,6 +17,8 @@ const Header = () => {
     const navOptions = <>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/about">About</Link></li>
+        
+        <li><Link to="/admin-login">Admin Login</Link></li>
         
         {
             user && isAdmin && <li><Link to="/admin/home">Admin Dashboard</Link></li>
