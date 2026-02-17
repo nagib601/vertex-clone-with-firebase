@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// আপনার দেওয়া পাথ ঠিক রাখা হয়েছে
 import { AuthContext } from "../context/AuthProvider";
 import { db } from "../firebase/Firebase.config"; 
 import { doc, setDoc } from "firebase/firestore";
-// ডিজাইনের জন্য আইকন এবং অ্যালার্ট ইমপোর্ট
 import Swal from "sweetalert2";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -12,7 +10,6 @@ const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // পাসওয়ার্ড টগল এবং লোডিং স্টেট
     const [showPassword, setShowPassword] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
 
@@ -20,33 +17,33 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
-        const photo = form.photo.value; // ফটো ইউআরএল ইনপুট যোগ করা হয়েছে
+        // Photo URL ভেরিয়েবল এখান থেকে সরিয়ে দেওয়া হয়েছে
         const email = form.email.value;
         const password = form.password.value;
         const role = "student"; 
 
-        setIsRegistering(true); // লোডিং শুরু
+        setIsRegistering(true); 
 
         try {
             // ১. ফায়ারবেস অথেনটিফিকেশন
             const result = await createUser(email, password);
             const user = result.user;
 
-            // ২. নাম এবং ছবি আপডেট করা
-            await updateUserProfile(name, photo);
+            // ২. নাম আপডেট করা (Photo null রাখা হয়েছে বা ডিফল্ট ইমেজ দিতে পারেন)
+            await updateUserProfile(name, null);
 
             // ৩. ডাটাবেসে (Firestore) ইউজারের তথ্য সেভ করা
             await setDoc(doc(db, "users", user.uid), {
                 name: name,
                 email: email,
-                photo: photo,
                 role: role,
                 uid: user.uid
+                // photo ফিল্ডটি ডাটাবেস সেভ অবজেক্ট থেকেও সরানো হয়েছে
             });
 
-            setIsRegistering(false); // লোডিং শেষ
+            setIsRegistering(false); 
 
-            // ৪. সাকসেস অ্যালার্ট (লগইন পেজের মতো)
+            // ৪. সাকসেস অ্যালার্ট
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -60,7 +57,6 @@ const Register = () => {
             
         } catch (error) {
             setIsRegistering(false);
-            // এরর অ্যালার্ট
             Swal.fire({
                 icon: "error",
                 title: "Registration Failed",
@@ -74,13 +70,11 @@ const Register = () => {
     }
 
     return (
-        // ✅ ডার্ক মোড (bg-base-200) এবং কার্সার ফিক্স (cursor-default)
         <div className="min-h-screen w-full flex items-center justify-center bg-base-200 font-sans cursor-default">
             
-            {/* মেইন কার্ড কন্টেইনার */}
             <div className="bg-base-100 shadow-2xl rounded-2xl overflow-hidden flex max-w-4xl w-full m-4">
                 
-                {/* বাম পাশ - ইমেজ (মোবাইলে হাইড থাকবে) */}
+                {/* বাম পাশ - ইমেজ */}
                 <div className="hidden md:flex w-1/2 bg-primary items-center justify-center p-10 text-white flex-col">
                     <img 
                         src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7965.jpg" 
@@ -116,19 +110,7 @@ const Register = () => {
                             />
                         </div>
 
-                        {/* Photo URL Input */}
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text font-semibold text-base-content">Photo URL</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                name="photo" 
-                                placeholder="Enter photo URL" 
-                                className="input input-bordered w-full focus:outline-none focus:border-primary bg-base-100" 
-                                required 
-                            />
-                        </div>
+                        {/* Photo URL Input সেকশনটি এখান থেকে সম্পূর্ণ মুছে ফেলা হয়েছে */}
 
                         {/* Email Input */}
                         <div className="form-control">
@@ -164,7 +146,7 @@ const Register = () => {
                             </span>
                         </div>
 
-                        {/* Register Button with Loading Spinner */}
+                        {/* Register Button */}
                         <div className="form-control mt-6">
                             <button 
                                 disabled={isRegistering} 
