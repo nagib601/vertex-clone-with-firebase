@@ -3,27 +3,40 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import useAdmin from '../hooks/Useadmin';
 import { FaSignOutAlt } from "react-icons/fa";
+import Swal from 'sweetalert2'; // ✅ Import SweetAlert2
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.log(error));
+        // ✅ Logout Confirmation Alert
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you really want to log out?", // Text changed for context
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Log Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user clicks "Yes", then execute logout
+                logOut()
+                    
+                    .catch(error => console.log(error));
+            }
+        });
     }
 
     const navOptions = <>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         
-        {/* যদি ইউজার Admin হয়, তবেই ড্যাশবোর্ড দেখাবে */}
         {
             user && isAdmin && <li><Link to="/admin/home">Admin Dashboard</Link></li>
         }
 
-        {/* এখানে !isAdmin সরিয়ে দেওয়া হয়েছে, তাই ইউজার বা অ্যাডমিন যেই হোক, লগইন থাকলে My Courses দেখাবে */}
         {
             user && <li><Link to="/my-courses">My Courses</Link></li>
         }
@@ -53,6 +66,7 @@ const Header = () => {
                         user ? <>
                             <span className='mr-4 font-semibold hidden md:block text-gray-300'>{user?.displayName}</span>
                             
+                            {/* Log Out Button */}
                             <button 
                                 onClick={handleLogOut} 
                                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-semibold transition-all duration-300 hover:bg-red-600 hover:border-red-600 hover:shadow-[0_0_15px_rgba(220,38,38,0.5)] group"
