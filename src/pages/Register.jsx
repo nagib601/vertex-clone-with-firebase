@@ -139,7 +139,7 @@ const Register = () => {
                                 required 
                             />
                             <span 
-                                className="absolute top-[50px] right-4 cursor-pointer text-base-content/60 hover:text-primary transition"
+                                className="absolute top-[35px] right-4 cursor-pointer text-base-content/60 hover:text-primary transition"
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}

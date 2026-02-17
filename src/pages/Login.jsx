@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthProvider";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/Firebase.config";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { signIn } = useContext(AuthContext); 
@@ -47,8 +48,8 @@ const Login = () => {
         }
     };
 
-    const handleGoogleLogin = () => {
-        // Google Login Logic
+   const handleGoogleLogin = () => {
+        Swal.fire("Info", "Google Login Coming Soon!", "info");
     }
 
     return (
@@ -76,7 +77,7 @@ const Login = () => {
                 <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                     <div className="text-center mb-8">
                         {/* ✅ Change 4: text-gray-800 -> text-base-content */}
-                        <h2 className="text-3xl font-bold text-base-content">Student Login</h2>
+                        <h2 className="text-3xl font-bold text-base-content">Login</h2>
                         <p className="text-base-content/70 mt-2">Please sign in to continue</p>
                     </div>
 
@@ -106,7 +107,7 @@ const Login = () => {
                                 required 
                             />
                             <span 
-                                className="absolute top-[50px] right-4 cursor-pointer text-base-content/60 hover:text-primary transition"
+                                className="absolute top-[35px] right-4 cursor-pointer text-base-content/60 hover:text-primary transition"
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
