@@ -54,7 +54,7 @@ const AdminLayout = () => {
                 <ul className="menu p-4 w-80 min-h-full bg-[#1e293b] text-white">
                     {/* Sidebar Logo/Title */}
                     <div className="mb-8 mt-4 text-center">
-                        <h2 className="text-3xl font-bold text-yellow-500">Vertex<span className="text-white">BCS</span></h2>
+                        <h2 className="text-3xl font-bold text-yellow-500">My<span className="text-white">Web</span></h2>
                         <p className="text-xs text-gray-400 tracking-widest mt-1">ADMIN CONTROL</p>
                     </div>
 
