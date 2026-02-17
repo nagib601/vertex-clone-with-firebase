@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaUsers, FaBook, FaSignOutAlt, FaBars } from "react-icons/fa";
+import { FaHome, FaUsers, FaBook, FaSignOutAlt, FaBars, FaListAlt } from "react-icons/fa"; // FaListAlt icon add kora hoyeche
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider"; // পাথ ঠিক করে নেবেন
+import { AuthContext } from "../../context/AuthProvider";
 
 const AdminLayout = () => {
     const { logOut } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const AdminLayout = () => {
             <div className="drawer-content flex flex-col bg-gray-100 min-h-screen">
                 
                 {/* [NEW] Admin Header (শুধুমাত্র অ্যাডমিন প্যানেলের জন্য) */}
-                <div className="w-full navbar bg-white shadow-md px-10">
+                <div className="w-full navbar bg-white shadow-md px-10 flex justify-between">
                     <div className="flex-none lg:hidden">
                         <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
                             <FaBars className="text-xl"/>
@@ -29,8 +29,10 @@ const AdminLayout = () => {
                     <div className="flex-1">
                         <h2 className="text-xl font-bold text-gray-700">Admin Dashboard</h2>
                     </div>
+                    
+                    {/* Admin Avatar */}
                     <div className="flex-none gap-4">
-                        <div className="dropdown dropdown-end">
+                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img src="https://i.ibb.co/4pDNDk1/avatar.png" alt="admin" />
@@ -67,9 +69,11 @@ const AdminLayout = () => {
                             <FaUsers /> Manage Users
                         </NavLink>
                     </li>
+                    
+                    {/* [NEW] Manage Courses Link */}
                     <li className="mb-2">
-                        <NavLink to="/admin/add-course" className={({ isActive }) => isActive ? "bg-primary text-white" : ""}>
-                            <FaBook /> Add New Course
+                        <NavLink to="/admin/managecourses" className={({ isActive }) => isActive ? "bg-primary text-white" : ""}>
+                            <FaListAlt /> Manage Courses
                         </NavLink>
                     </li>
 

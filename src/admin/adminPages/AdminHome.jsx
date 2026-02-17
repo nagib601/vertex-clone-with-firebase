@@ -3,9 +3,9 @@ import React from 'react';
 
 const AdminHome = () => {
     return (
-        <div>
+        <div className='text-center text-black'>
             <h2 className="text-3xl font-bold">Welcome to Admin Home Panel</h2>
-            <p>Here you can manage everything.</p>
+            <p>Here you can control everything.</p>
         </div>
     );
 };

@@ -11,55 +11,65 @@ import AdminLayout from "../admin/layout/AdminLayout";
 import AdminHome from "../admin/adminPages/AdminHome";
 import ManageUsers from "../admin/adminPages/ManageUsers";
 import AddCourse from "../admin/adminPages/AddCourse";
+import ManageCourses from "../admin/managecourses/ManageCourses"; // Import ঠিক আছে
 
-// Student Imports (এখন আর লেআউট লাগবে না, সরাসরি পেজ ইমপোর্ট)
+// Student Imports
 import MyCart from "../student/pages/MyCourses";
 import About from "../pages/About";
 
-const router = createBrowserRouter([
+const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, 
+    element: <Root />,
     children: [
       {
-        path: "/home",
-        element: <Home />, 
-      }, 
+        path: "/", // Home path fix (Empty string works as index) or "/home"
+        element: <Home />,
+      },
+      {
+        path: "home",
+        element: <Home />,
+      },
       {
         path: "about",
         element: <About />,
       },
       {
         path: "login",
-        element: <Login />, 
+        element: <Login />,
       },
       {
-        path: "register", 
-        element: <Register />, 
+        path: "register",
+        element: <Register />,
       },
-      // [নতুন] স্টুডেন্ট যখন লগইন করবে, সে এই পেজগুলো দেখতে পারবে
       {
-        path: "my-courses", // আগে ছিল /dashboard/my-cart, এখন /my-courses
-        element: <PrivateRoute><MyCart /></PrivateRoute>, 
+        path: "my-courses",
+        element: <PrivateRoute><MyCart /></PrivateRoute>,
       },
-      // এখানে আরও স্টুডেন্ট পেজ যোগ করতে পারেন (যেমন: Class Videos)
+      // ❌ এখান থেকে managecourses সরিয়ে ফেলা হয়েছে কারণ এটি এখন এডমিন প্যানেলের অংশ
       {
         path: "admin-login",
-        element: <AdminLogin />, 
+        element: <AdminLogin />,
       },
     ]
   },
 
-  // ============ ADMIN DASHBOARD (অ্যাডমিন প্যানেল আলাদা থাকবে) ============
+  // ============ ADMIN DASHBOARD ============
   {
     path: "admin",
-    element: <PrivateRoute><AdminLayout /></PrivateRoute>, 
+    element: <PrivateRoute><AdminLayout /></PrivateRoute>, // পুরো লেআউট প্রোটেক্টেড
     children: [
-      { path: "home", element: <AdminHome /> },
-      { path: "all-users", element: <ManageUsers /> },
-      { path: "add-course", element: <AddCourse /> }
+      { path: "home", element: <AdminHome /> },      // URL: /admin/home
+      { path: "all-users", element: <ManageUsers /> }, // URL: /admin/all-users
+      { path: "add-course", element: <AddCourse /> },  // URL: /admin/add-course
+      
+      // ✅ এখানে যোগ করা হয়েছে
+      { 
+        path: "managecourses", 
+        element: <ManageCourses /> 
+      } 
     ]
   }
 ]);
 
-export default router;
+export default routes;

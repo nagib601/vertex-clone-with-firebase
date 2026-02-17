@@ -31,7 +31,7 @@ const Dashboard = () => {
                 <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                     {/* Sidebar Header */}
                     <div className="mb-6 text-center">
-                        <h2 className="text-2xl font-bold">Vertex BCS</h2>
+                        <h2 className="text-2xl font-bold">My web</h2>
                         <p className="text-sm text-gray-500">Dashboard</p>
                     </div>
 
